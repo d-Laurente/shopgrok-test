@@ -1,0 +1,51 @@
+Task 1: Peter of Kensington
+    //*[@id="menu"]/div/a
+
+Task 2: Best Buy Coffee
+    XPath reference Path
+    //main[@id='product-listing-container']//ul[@class='productList list-only']//li
+
+    Name:
+    remember .//searches from the anchor tag
+    .//h4
+
+    Was Price:
+    .//span[@class='price price--rrp']
+
+    Now Price:
+    .//span[@class='price']
+
+    Product URL
+    .//figure//a/@href
+
+    Image URL
+    .//figure//a//img/@src
+
+Task 3: Amazon Categories
+    OLD
+    XPath reference
+    //div[@id='siteDirectory']//table//tbody//tr/td//div[@class='popover-grouping']
+
+    Category
+    .//h2
+
+    Subcategory
+    .//ul
+
+    The Correct Attempt
+    Attempt 2:
+    XPath Reference
+    //div[@id='siteDirectory']//table//tbody//tr/td//div[@class='popover-grouping']//ul//li
+
+    Category
+    .//..//*
+
+    Subcategory
+    .
+
+    URL Link 
+    .//a/@href
+
+NOTES (I'm guessing):
+The way the tool works, is that reference is all the things that you need while the column
+just extracts exact elements attributed to each result in the reference xpath
