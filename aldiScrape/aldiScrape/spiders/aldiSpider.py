@@ -10,14 +10,15 @@ class AldiSpider(scrapy.Spider):
     def parse(self, response):
         groceries_sub_xpath = "//*[@id='main-nav']//ul[@class='main-nav--level']//li[2]//ul[@role='menu']//li/div/a[@role='menuitem']/@href"
         submenu_links = []
-        product_info_list = []
         for submenu in response.xpath(groceries_sub_xpath).extract():
             submenu_links.append(submenu)
 
         i = 0 #for debugging purposes 1 2 6 7 8
         for link in submenu_links:
-        #     print(link)
-            # submenu items that don't have subcategories
+            # print(link)
+            # 1,2,6,7,8 correspond to the sub categories position that they appear
+            # under the grocery category. 1,2,6,7,8 have sublinks you need to pass
+            # through before you can get to their product page
             if i not in [1,2,6,7,8]:
                 yield scrapy.Request(link, callback=self.parse_link)
             else:
@@ -59,6 +60,7 @@ class AldiSpider(scrapy.Spider):
                 'Price per unit': price_per_unit,
             }
 
+    # Method for parsing the sublinks in order to get to their corresponding product page
     def parse_sub_link(self, response):
         # Note we can rely to get the 3rd one as dir like structure starts from
         # root /ALDI Austalia/Groceries/xxx
@@ -70,32 +72,9 @@ class AldiSpider(scrapy.Spider):
             yield scrapy.Request(link, callback=self.parse_link)
         else :
             category_name = category_name.lower()
+            # special case having the & char here
             if category_name == "laundry & household":
                 category_name = category_name.replace(' & ', '-')
             sublinks_xpath = "//div[@class='csc-default']//a[contains(@href, '" + str(category_name) + "/')]/@href"
             for link in response.xpath(sublinks_xpath).extract():
                 yield scrapy.Request(link, callback=self.parse_link)
-
-
-
-
-# Working space
-# response.xpath("//*[@id='main-nav']//ul[@class='main-nav--level']//li[2]//ul[@role='menu']//li/div/a[@role='menuitem']/@href").extract()
-# fetch('https://www.aldi.com.au/en/groceries/super-savers/')
-# i = 0
-# for x in response.xpath("//div[@class='page-wrapper']//article[@id='main-content']//div[@class='tx-aldi-products']//a[@title='to product detail']/div[@class='box m-text-image']"):
-#     product_title = x.xpath(".//div[@class='box--description--header']").getall()
-#     img_url = x.xpath(".//img").getall()
-#     print(product_title, img_url)
-#     print("-------------" + str(i) + "-------------")
-#     i += 1
-# xpath = "//div[@id='c323143']//
-# div[contains(@class, 'csc-textpic')]
-# //div[@class='csc-default']//a[contains(@href, 'pantry/')]
-# //div[@class='csc-default']//a[contains(@href, 'liquor/')]
-# //div[@class='csc-default']//a[contains(@href, 'laundry-household/')]
-# //div[@class='csc-default']//a[contains(@href, 'baby/')]
-# //div[@class='csc-default']//a[contains(@href, 'fresh-produce/dairy-eggs')]
-# (//span[@itemprop='name'])[3]
-# //div[contains(@class, 'csc-textpic-firstcol')]//a/@href
-# //div[@class='csc-textpic-imagewrap']//a/@href
