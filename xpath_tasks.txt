@@ -1,51 +1,64 @@
 Task 1: Peter of Kensington
-    //*[@id="menu"]/div/a
+    Selector:
+        XPath Reference:
+            //*[@id="menu"]/div/a
+    
+    Columns:
+        XPath:
+            .
+        Name:
+            Category
+
 
 Task 2: Best Buy Coffee
-    XPath reference Path
-    //main[@id='product-listing-container']//ul[@class='productList list-only']//li
+    Selector:
+        XPath Reference Path:
+            //main[@id='product-listing-container']//ul[@class='productList list-only']//li
 
-    Name:
-    remember .//searches from the anchor tag
-    .//h4
+    Columns:
+        XPath:
+            .//h4
+        Name:
+            Product Name
 
-    Was Price:
-    .//span[@class='price price--rrp']
+        XPath:
+            .//span[@class='price price--rrp']
+        Name:
+            Was Price
 
-    Now Price:
-    .//span[@class='price']
+        XPath:
+            .//span[@class='price']
+        Name:
+            Now Price
 
-    Product URL
-    .//figure//a/@href
+        XPath:
+            .//figure//a/@href
+        Name:
+            Product URL
 
-    Image URL
-    .//figure//a//img/@src
+        XPath:
+            .//figure//a//img/@src
+        Name:
+            Image URL
 
 Task 3: Amazon Categories
-    OLD
-    XPath reference
-    //div[@id='siteDirectory']//table//tbody//tr/td//div[@class='popover-grouping']
+    Selector
+        XPath Reference:
+            //div[@id='siteDirectory']//table//tbody//tr/td//div[@class='popover-grouping']//ul//li
 
-    Category
-    .//h2
+    Columns
+        XPath:
+            .//..//..//h2
+        Name:
+            Category
 
-    Subcategory
-    .//ul
+        XPath:
+            .
+        Name:
+            Subcategory
+            
+        XPath:
+            .//a/@href
+        Name:
+            URL Link 
 
-    The Correct Attempt
-    Attempt 2:
-    XPath Reference
-    //div[@id='siteDirectory']//table//tbody//tr/td//div[@class='popover-grouping']//ul//li
-
-    Category
-    .//..//*
-
-    Subcategory
-    .
-
-    URL Link 
-    .//a/@href
-
-NOTES (I'm guessing):
-The way the tool works, is that reference is all the things that you need while the column
-just extracts exact elements attributed to each result in the reference xpath

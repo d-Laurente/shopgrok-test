@@ -6,4 +6,4 @@ pattern = r'https://(\w+).(\w+).com/([0-9a-z]{3})?/?([0-9a-z]{3})?/?([0-9a-z]{11
 
 for url in generic_urls:
     special_sequence = re.sub(pattern, r'\5', url)
-    print(special_sequence)
+    # print(special_sequence)

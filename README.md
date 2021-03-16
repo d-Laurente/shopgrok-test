@@ -1,6 +1,10 @@
 # shopgrok-test
 Contains file for the Shopgrok technical test
 
+For full text only answers to all questions (except Python Scrapy part) look at: "full_responses.txt"
+
+However if you want to see indiviual files see below.
+
 For the xpath tests, my responses are in "xpath_tasks.txt".
 
 For my Aldi scrapy crawler, it is located in "/aldiScrape/aldiScrape/spiders/aldiSpider.py".
